@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.lib_gesture_lock_view.versionCode
+        versionName rootProject.ext.lib_gesture_lock_view.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = rootProject.ext.android.dir
+        }
+    }
+}
+
+task copyAAR(type: Copy) {
+    from "build/outputs/aar/${project.name}-release.aar"
+    into rootProject.ext.releaseDirsPath + '/' + project.name
+    rename { String fileName ->
+        fileName = "${rootProject.ext.lib_gesture_lock_view.name}-${rootProject.ext.lib_gesture_lock_view.versionName}-${rootProject.ext.lib_gesture_lock_view.versionCode}.aar"
+    }
+}
+
+repositories {
+    flatDir {
+        dirs {
+            return rootProject.ext.android.dir
+        }
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.dependencies.support_v7_appcompat
+}
