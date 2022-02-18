@@ -19,6 +19,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies.support_v7_appcompat
-    implementation project(":lib_gesture-lock-view")
+    implementation project(':lib_gesture_lockview')
 }
 

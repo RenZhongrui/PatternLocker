@@ -1,2 +1,2 @@
 include ':app_gesture'
-include ':lib_gesture-lock-view'
+include ':lib_gesture_lockview'
