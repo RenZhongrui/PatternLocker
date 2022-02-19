@@ -25,7 +25,6 @@ public class PatternIndicatorView extends View {
     private List hitIndexList = new ArrayList<Integer>();
     private List<CellBean> cellBeanList;
 
-    private Paint paintS;
 
     public PatternIndicatorView(Context context) {
         this(context, null);
@@ -38,13 +37,7 @@ public class PatternIndicatorView extends View {
     public PatternIndicatorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
-        //this.cellBeanList = cellBeanList();
         init(attrs, defStyleAttr);
-
-        paintS = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paintS.setStyle(Paint.Style.FILL);
-        paintS.setStrokeWidth(2f);
-        paintS.setColor(Color.BLUE);
     }
 
     private void init(AttributeSet attrs, int defStyleAttr) {
@@ -67,9 +60,7 @@ public class PatternIndicatorView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         initCellBeanList();
-
         this.updateHitState();
         this.drawLinkedLine(canvas);
         this.drawCells(canvas);
